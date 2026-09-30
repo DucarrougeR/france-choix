@@ -1,4 +1,21 @@
-export const questions = [
+export interface Party {
+  name: string;
+  color: string;
+}
+
+export interface Answer {
+  text: string;
+  weights: Record<string, number>;
+}
+
+export interface Question {
+  id: string;
+  theme: string;
+  text: string;
+  answers: Answer[];
+}
+
+export const questions: Question[] = [
   {
     id: "q1",
     theme: "Économie",
@@ -19,7 +36,7 @@ export const questions = [
   }
 ];
 
-export const parties = {
+export const parties: Record<string, Party> = {
   gauche: { name: "Nouveau Front Populaire", color: "bg-red-500" },
   centre: { name: "Ensemble (Renaissance)", color: "bg-yellow-500" },
   droite: { name: "Les Républicains", color: "bg-blue-600" },
