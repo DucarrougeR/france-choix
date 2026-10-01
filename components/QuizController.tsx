@@ -41,7 +41,7 @@ export function QuizController() {
             initial={{ y: -10, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.2 }}
-            className={`inline-block px-6 py-3 mt-4 rounded-full text-white font-black text-xl shadow-lg ${topParty.color}`}
+            className={`inline-block px-6 py-3 mt-4 rounded-full text-france-blue font-black text-xl shadow-lg ${topParty.color}`}
           >
             {topParty.name}
           </motion.div>
