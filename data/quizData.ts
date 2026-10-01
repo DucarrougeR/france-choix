@@ -1,6 +1,8 @@
 export interface Party {
   name: string;
   color: string;
+  website?: string;
+  ai_summary?: string;
 }
 
 export interface Answer {
@@ -16,14 +18,54 @@ export interface Question {
 }
 
 export const parties: Record<string, Party> = {
-  lfi: { name: "La France Insoumise", color: "bg-red-600" },
-  pcf: { name: "Parti Communiste Français", color: "bg-red-700" },
-  ps: { name: "Parti Socialiste / Place Publique", color: "bg-pink-500" },
-  ecolo: { name: "Les Écologistes", color: "bg-green-500" },
-  renaissance: { name: "Bloc Central (Renaissance, Horizons, MoDem)", color: "bg-yellow-500" },
-  lr: { name: "Les Républicains", color: "bg-blue-600" },
-  rn: { name: "Rassemblement National", color: "bg-blue-900" },
-  reconquete: { name: "Reconquête!", color: "bg-purple-900" }
+  lfi: { 
+    name: "La France Insoumise", 
+    color: "bg-red-600",
+    website: "https://lafranceinsoumise.fr/",
+    ai_summary: "Vos convictions s'alignent fortement avec LFI. Comme eux, vous demandez une rupture sur le plan économique (retour de l'ISF, hausse fulgurante du SMIC) et une refonte de la Ve République. Sur le plan environnemental, vous privilégiez la sortie du nucléaire. Socialement, vous êtes intraitable sur le retour de la retraite à 60 ans et vous vous opposez fermement au resserrement sécuritaire ou migratoire."
+  },
+  pcf: { 
+    name: "Parti Communiste Français", 
+    color: "bg-red-700",
+    website: "https://www.pcf.fr/",
+    ai_summary: "Vous retrouvez vos priorités chez le PCF, notamment sur la réindustrialisation et la défense inconditionnelle des travailleurs (retraite à 60 ans, augmentation des salaires). Contrairement au reste de la gauche radicale, vous avez tendance à soutenir fermement la filière nucléaire (indispensable à la souveraineté énergétique et à l'industrie)."
+  },
+  ps: { 
+    name: "Parti Socialiste / Place Publique", 
+    color: "bg-pink-500",
+    website: "https://www.parti-socialiste.fr/",
+    ai_summary: "Votre profil montre une ligne claire de la gauche social-démocrate et européenne. Vous défendez de puissants acquis sociaux (défense du droit d'asile) tout en prônant un réformisme pragmatique négocié par les corps intermédiaires. Surtout, votre parti pris pour la construction européenne politique (UE, soutien Ukraine) est décisif dans votre profil."
+  },
+  ecolo: { 
+    name: "Les Écologistes", 
+    color: "bg-green-500",
+    website: "https://lesecologistes.fr/",
+    ai_summary: "Sans surprise, l'urgence bioclimatique dirige votre boussole. Vos réponses soutiennent un développement massif du renouvelable au détriment du nucléaire. Au-delà de l'écologie, vos choix montrent un fort libéralisme sociétal (légalisation du cannabis, fin de vie) couplé à une intense redistribution des richesses, ancrant fermement vos préférences à gauche."
+  },
+  renaissance: { 
+    name: "Bloc Central (Renaissance, Horizons)", 
+    color: "bg-yellow-500",
+    website: "https://parti-renaissance.fr/",
+    ai_summary: "Vos positions épousent la ligne réformiste pro-business de la Majorité sortante. Vous estimez nécessaire de maîtriser la dépense publique par des réformes structurelles (comme la retraite à 64 ans ou la conditionnalité du RSA) sans surtaxer le capital. Sur le plan régalien, vous cherchez un équilibre entre fermeté et compromis, tout en restant un pro-européen et pro-OTAN convaincu."
+  },
+  lr: { 
+    name: "Les Républicains", 
+    color: "bg-blue-600",
+    website: "https://republicains.fr/",
+    ai_summary: "Vous êtes politiquement positionné sur la droite conservatrice traditionnelle. Économiquement, vous privilégiez la valeur travail, la baisse continue de la fiscalité et la réduction de l'État. Sur les thématiques régaliennes, vos réponses prônent une justice répressive (peines planchers, mineurs) et une régulation vigoureuse de l'immigration."
+  },
+  rn: { 
+    name: "Rassemblement National", 
+    color: "bg-blue-900",
+    website: "https://rassemblementnational.fr/",
+    ai_summary: "Vos choix résonnent profondément avec le Rassemblement National. Vous privilégiez les frontières (fin du droit du sol, suspension du regroupement) et la sécurité publique (armes pour la police). Économiquement, vous êtes interventionniste pour sauver le pouvoir d'achat face aux super-profits et écologistes, et vous défendez une vision farouchement souverainiste de la nation."
+  },
+  reconquete: { 
+    name: "Reconquête!", 
+    color: "bg-purple-900",
+    website: "https://www.parti-reconquete.fr/",
+    ai_summary: "Vous rattachez votre vision à une droite strictement identitaire et sécuritaire. Face à une menace civilisationnelle perçue, vous privilégiez la priorité nationale absolue, la fin du droit du sol, et vous vous opposez radicalement au wokisme. L'économie, pour vous, se redresse en sabrant radicalement les dépenses de l'État (comme l'AME) et en valorisant l'assimilation exigeante."
+  }
 };
 
 export const questions: Question[] = [

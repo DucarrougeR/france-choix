@@ -26,41 +26,85 @@ export function QuizController() {
 
   if (isFinished) {
     const sortedResults = Object.entries(scores).sort((a, b) => b[1] - a[1]);
+    const topPartyId = sortedResults[0][0];
+    const topParty = parties[topPartyId as keyof typeof parties];
     
     return (
       <motion.div 
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
-        className="bg-white p-6 md:p-10 rounded-2xl shadow-xl text-center w-full max-w-2xl mx-auto"
+        className="bg-white p-6 md:p-10 rounded-2xl shadow-xl text-center w-full max-w-2xl mx-auto space-y-8"
       >
-        <h2 className="text-3xl font-extrabold mb-8 text-slate-800">Vos Résultats</h2>
-        <div className="space-y-4">
-          {sortedResults.map(([partyId, score], index) => {
-            const party = parties[partyId as keyof typeof parties];
-            // Skip rendering if party has 0 points
-            if (score <= 0) return null;
-            return (
-              <motion.div 
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: index * 0.1 }}
-                key={partyId} 
-                className={`flex justify-between items-center p-4 border rounded-xl overflow-hidden relative shadow-sm`}
+        <div>
+          <h2 className="text-3xl font-extrabold mb-2 text-slate-800">Votre Match Idéal</h2>
+          <motion.div 
+            initial={{ y: -10, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.2 }}
+            className={`inline-block px-6 py-3 mt-4 rounded-full text-white font-black text-xl shadow-lg ${topParty.color}`}
+          >
+            {topParty.name}
+          </motion.div>
+        </div>
+
+        {/* AI Insight Box */}
+        {topParty.ai_summary && (
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4 }}
+            className="bg-blue-50 border border-blue-100 p-6 rounded-2xl text-left shadow-sm relative overflow-hidden"
+          >
+            <div className="flex items-center gap-2 mb-3">
+              <span className="text-xl">✨</span>
+              <h3 className="font-bold text-blue-900 text-lg">Analyse IA</h3>
+            </div>
+            <p className="text-blue-800 leading-relaxed font-medium">
+              {topParty.ai_summary}
+            </p>
+            {topParty.website && (
+              <a 
+                href={topParty.website}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block mt-4 text-blue-700 font-bold hover:text-blue-900 underline decoration-2 underline-offset-4 transition-colors"
               >
-                {/* Subtle background color hint based on party */}
-                <div className={`absolute inset-0 opacity-10 ${party.color}`}></div>
-                <span className="font-bold text-lg relative z-10 text-slate-700">{party.name}</span>
-                <span className="bg-slate-800 text-white px-4 py-1.5 rounded-full font-bold relative z-10">
-                  {score} pts
-                </span>
-              </motion.div>
-            );
-          })}
+                Découvrir leur programme officiel &rarr;
+              </a>
+            )}
+          </motion.div>
+        )}
+
+        {/* Other Results Summary */}
+        <div className="pt-6 border-t mt-8">
+          <h3 className="text-lg font-bold text-slate-500 mb-4 uppercase tracking-wider text-left">Détail des scores</h3>
+          <div className="space-y-3">
+            {sortedResults.map(([partyId, score], index) => {
+              const party = parties[partyId as keyof typeof parties];
+              // Skip rendering if party has 0 points
+              if (score <= 0) return null;
+              return (
+                <motion.div 
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.6 + (index * 0.1) }}
+                  key={partyId} 
+                  className={`flex justify-between items-center p-3 border rounded-xl overflow-hidden relative shadow-sm`}
+                >
+                  <div className={`absolute inset-0 opacity-10 ${party.color}`}></div>
+                  <span className="font-bold text-slate-700 relative z-10">{party.name}</span>
+                  <span className="bg-slate-800 text-white px-3 py-1 text-sm rounded-full font-bold relative z-10">
+                    {score} pts
+                  </span>
+                </motion.div>
+              );
+            })}
+          </div>
         </div>
         
         <button 
           onClick={() => window.location.reload()}
-          className="mt-10 px-8 py-3 bg-france-blue text-white font-bold rounded-lg hover:bg-blue-900 transition-colors"
+          className="mt-10 px-8 py-3 bg-france-blue text-white font-bold rounded-lg hover:bg-blue-900 transition-colors w-full"
         >
           Recommencer
         </button>
