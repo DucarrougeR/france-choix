@@ -26,7 +26,7 @@ export default function Home() {
           </h1>
           
           <p className="text-lg md:text-xl text-slate-600 font-medium max-w-xl mx-auto leading-relaxed">
-            Où vous situez-vous ? Répondez à 24 questions décisives pour découvrir votre algorithme politique.
+            Où vous situez-vous ? Répondez à 34 questions décisives pour découvrir votre algorithme politique.
           </p>
         </header>
 
